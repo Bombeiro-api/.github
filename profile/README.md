@@ -39,17 +39,25 @@ O sistema é composto por três microsserviços independentes que se comunicam v
 
 ### Fluxo de Despacho
 
-```
-Operador registra ocorrência
-  └─► POST servico-ocorrencia /api/ocorrencia
-        └─► POST servico-mapa /api/mapa/rota-mais-proxima
-              ├─► GET servico-veiculos /api/corporacao
-              │       filtra corporações ativas com viatura DisponivelNaBase
-              ├─► Google Maps Distance Matrix API
-              │       seleciona a corporação de menor tempo de deslocamento
-              ├─► PATCH servico-veiculos /api/viatura/{id}/status → EmDeslocamento
-              └─► Google Maps Directions API
-                      retorna rota completa, distância e tempo estimado
+```mermaid
+sequenceDiagram
+    actor Operador
+    participant Ocorrencia as servico-ocorrencia
+    participant Mapa as servico-mapa
+    participant Veiculos as servico-veiculos
+    participant Google as Google Maps API
+
+    Operador->>Ocorrencia: POST /api/ocorrencia
+    Ocorrencia->>Mapa: POST /api/mapa/rota-mais-proxima
+    Mapa->>Veiculos: GET /api/corporacao
+    Veiculos-->>Mapa: corporações com viaturas disponíveis
+    Mapa->>Google: Distance Matrix API
+    Google-->>Mapa: tempo de deslocamento por corporação
+    Mapa->>Veiculos: PATCH /api/viatura/{id}/status → EmDeslocamento
+    Mapa->>Google: Directions API
+    Google-->>Mapa: rota completa, distância e tempo estimado
+    Mapa-->>Ocorrencia: corporação, viatura, rota
+    Ocorrencia-->>Operador: ocorrência registrada com despacho
 ```
 
 ### Tecnologias Comuns
