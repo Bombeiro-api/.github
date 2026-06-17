@@ -75,21 +75,16 @@ sequenceDiagram
 ### Módulo 1: Base & Central de Operações
 * **RF01 - Cadastro de Bases/Quartéis:** O sistema deve permitir o cadastro de múltiplas bases físicas, definindo sua localização geográfica exata e sua respectiva área de jurisdição operacional.
 * **RF02 - Atendimento de Chamados:** O sistema deve fornecer uma interface de entrada rápida para que o operador registre os dados essenciais coletados via telefone (nome do solicitante, contato, descrição da emergência).
-* **RF03 - Busca Rápida de Endereços:** O sistema deve integrar um validador de endereços ágil para localizar cruzamentos, ruas e bairros em tempo real durante o preenchimento do chamado.
-* **RF04 - Painel de Despacho (Fila/Kanban):** O sistema deve exibir uma tela consolidada listando as ocorrências aguardando atendimento de forma visual, organizadas por prioridade.
 
 ### Módulo 2: Gestão de Ocorrências
 * **RF05 - Ciclo de Vida da Ocorrência:** O sistema deve permitir a criação, edição, visualização e o encerramento formal de registros de ocorrência pelos operadores autorizados.
-* **RF06 - Triagem e Priorização:** O sistema deve classificar automaticamente ou manualmente o nível de gravidade e o tipo de ocorrência (ex: Incêndio Estrutural, Resgate Veicular, Atendimento Pré-Hospitalar - APH).
 * **RF07 - Despacho de Viaturas:** O sistema deve sugerir e permitir a vinculação de veículos específicos a uma ocorrência com base na natureza do chamado (ex: enviar uma ambulância para acidentes com vítimas ou caminhão Auto Bomba para incêndios).
 
 ### Módulo 3: Frota de Veículos (Viaturas)
 * **RF08 - Cadastro de Frota:** O sistema deve permitir o registro detalhado de todas as viaturas, armazenando informações como tipo (ABTR, ASU, Auto Escada), placa, prefixo de rádio e capacidades técnicas.
 * **RF09 - Controle de Status Operacional:** O sistema deve permitir a atualização e visualização em tempo real do estado de cada viatura (ex: "Disponível na Base", "Em Deslocamento", "No Local", "Em Manutenção").
-* **RF10 - Gestão de Guarnição:** O sistema deve permitir associar quais bombeiros e comandantes estão alocados em cada viatura durante um turno de serviço específico.
+* **RF10 - Gestão de Guarnição:** O sistema deve permitir registrar quais bombeiros estão escalados em cada viatura durante um turno de serviço, diretamente no cadastro da viatura.
 * **RF11 - Controle de Insumos e Suprimentos:** O sistema deve permitir o registro rápido do status de materiais críticos pós-atendimento (ex: nível de água no tanque, cilindros de oxigênio utilizados, combustível).
 
 ### Módulo 4: Geolocalização & Mapa
-* **RF12 - Mapa Interativo em Tempo Real:** O mapa deve plotar e atualizar dinamicamente a localização geográfica de todas as ocorrências ativas e das bases físicas cadastradas.
-* **RF13 - Rastreamento da Frota:** O sistema deve rastrear os veículos em movimento via GPS, diferenciando-os na interface do mapa por ícones de acordo com a categoria e por cores de acordo com o status operacional.
-* **RF14 - Cálculo e Sugestão de Rotas:** O sistema deve calcular a rota mais rápida entre a posição atual da viatura despachada (ou da base de origem) e o ponto exato da ocorrência geográfica mapeada.
+* **RF14 - Cálculo e Sugestão de Rotas:** O sistema deve calcular a rota mais rápida entre a localização da base de origem e o ponto exato da ocorrência, retornando distância estimada, tempo de deslocamento e passos da rota.
